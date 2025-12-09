@@ -26,10 +26,10 @@ app.post("/create-checkout-session", async (req, res) => {
                 }
             ],
             mode: "payment",
-            
-            // ⚠️ METS ICI LES URL DE TON VRAI SITE
-            success_url: "https://ton-vrai-site.fr/success",
-            cancel_url: "https://ton-vrai-site.fr/cancel"
+
+            // 🔥 TES VRAIES URLS
+            success_url: "https://brave-sky-82.creatpad.com/success",
+            cancel_url: "https://brave-sky-82.creatpad.com/cancel"
         });
 
         res.json({ url: session.url });
@@ -39,6 +39,7 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-// Render impose d'utiliser process.env.PORT
+// ⚠️ IMPORTANT : Render impose d'utiliser process.env.PORT
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Stripe server running on port " + PORT));
+app.listen(PORT, () => console.log(`Stripe server running on port ${PORT}`));
+
