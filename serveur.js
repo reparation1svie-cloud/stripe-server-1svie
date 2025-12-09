@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express"; 
 import Stripe from "stripe";
 import cors from "cors";
 
@@ -8,7 +8,7 @@ app.use(express.json());
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Route pour créer une session Stripe
+// Création session Stripe dynamique
 app.post("/create-checkout-session", async (req, res) => {
     const { amount, model } = req.body;
 
@@ -26,10 +26,8 @@ app.post("/create-checkout-session", async (req, res) => {
                 }
             ],
             mode: "payment",
-
-            // 🔥 TES VRAIES URLS
-            success_url: "https://brave-sky-82.creatpad.com/success",
-            cancel_url: "https://brave-sky-82.creatpad.com/cancel"
+            success_url: "https://TONSITE/success",
+            cancel_url: "https://TONSITE/cancel"
         });
 
         res.json({ url: session.url });
@@ -39,7 +37,6 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-// ⚠️ IMPORTANT : Render impose d'utiliser process.env.PORT
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Stripe server running on port ${PORT}`));
+app.listen(10000, () => console.log("Stripe server running"));
+
 
