@@ -1,8 +1,11 @@
 {
   "name": "stripe-server-1svie",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "serveur.js",
   "type": "module",
+  "scripts": {
+    "start": "nœud serveur.js"
+  },
   "dependencies": {
     "express": "^4.18.2",
     "stripe": "^12.0.0",
