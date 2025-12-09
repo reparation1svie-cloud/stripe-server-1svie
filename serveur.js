@@ -8,7 +8,7 @@ app.use(express.json());
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Création session Stripe dynamique
+// Route pour créer une session Stripe
 app.post("/create-checkout-session", async (req, res) => {
     const { amount, model } = req.body;
 
@@ -26,8 +26,10 @@ app.post("/create-checkout-session", async (req, res) => {
                 }
             ],
             mode: "payment",
-            success_url: "https://TON-SITE/success",
-            cancel_url: "https://TON-SITE/cancel"
+            
+            // ⚠️ METS ICI LES URL DE TON VRAI SITE
+            success_url: "https://ton-vrai-site.fr/success",
+            cancel_url: "https://ton-vrai-site.fr/cancel"
         });
 
         res.json({ url: session.url });
@@ -37,4 +39,6 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 });
 
-app.listen(10000, () => console.log("Stripe server running"));
+// Render impose d'utiliser process.env.PORT
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("Stripe server running on port " + PORT));
